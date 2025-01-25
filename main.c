@@ -8,12 +8,10 @@
    int main() {
       // Criar uma instância de cardapioM
       cardapioM meuCardapio;
-
       cardapioM meuCardapio_2;
 
       // Abrir o arquivo e contar o numero de linhas
       openCSV("data/restaurante_pratos copy.csv", ',', &meuCardapio);
-
       openCSV("data/restaurante_pratos copy.csv", ',', &meuCardapio_2);
 
       // Chamar a função numero_linhas para obter o número de linhas
@@ -29,6 +27,8 @@
 
       //Ordenar por bolha
       // bSort(&meuCardapio);
+
+
       //bSort truncado - numero de linhas a ser impressa
       printf("Os 4 pratos com maiores prioridades são: \n");
       t=clock();
