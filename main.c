@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "ordenando.c"
+#include "includes/ordenando.c"
 #include <time.h>
 
 
@@ -12,9 +12,9 @@ int main() {
     cardapioM meuCardapio_2;
 
     // Abrir o arquivo e contar o numero de linhas
-    openCSV("restaurante_pratos_red.csv", ',', &meuCardapio);
+    openCSV("data/restaurante_pratos_red.csv", ',', &meuCardapio);
 
-    openCSV("restaurante_pratos_red.csv", ',', &meuCardapio_2);
+    openCSV("data/restaurante_pratos_red.csv", ',', &meuCardapio_2);
 
     // Chamar a função numero_linhas para obter o número de linhas
     printf("Número de linhas lidas: %d\n", numero_linhas(&meuCardapio));
