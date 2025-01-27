@@ -96,12 +96,12 @@ void openCSV(const char *nomeArquivo, char delimitador, cardapioM *cardapioM) {
 
 void bSortT(cardapioM *mat, int limL) {
     int i, j;
-    // Loop para realizar a ordenação
+
     for (i = 0; i < *(mat->linhas) - 1; i++) {
         for (j = 0; j < *(mat->linhas) - i - 1; j++) {
-            // Comparar os valores das colunas convertidos para inteiro
+       
             if (atoi(mat->mat[j][0]) > atoi(mat->mat[j + 1][0])) {
-                // Trocar as linhas completas (ponteiros)
+
                 char *temp = mat->mat[j];
                 mat->mat[j] = mat->mat[j + 1];
                 mat->mat[j + 1] = temp;
@@ -116,12 +116,12 @@ void bSortT(cardapioM *mat, int limL) {
 
 void bSort(cardapioM *mat) {
     int i, j;
-    // Loop para realizar a ordenação
+
     for (i = 0; i < *(mat->linhas) - 1; i++) {
         for (j = 0; j < *(mat->linhas) - i - 1; j++) {
-            // Comparar os valores das colunas convertidos para inteiro
+
             if (atoi(mat->mat[j][0]) > atoi(mat->mat[j + 1][0])) {
-                // Trocar as linhas completas (ponteiros)
+
                 char *temp = mat->mat[j];
                 mat->mat[j] = mat->mat[j + 1];
                 mat->mat[j + 1] = temp;
@@ -150,7 +150,8 @@ void qSortT(cardapioM *mat, int limL) {
 // Define as prioridades com base na coluna especificada
 void definePrioridade(cardapioM *mat) {
     for (int i = 0; i < *(mat->linhas); i++) {
-        mat->prioridade[i] = atoi(mat->mat[i][0]); // Exemplo: usa a coluna 0 como prioridade
+        mat->prioridade[i] = atoi(mat->mat[i][0]);  //Forçando a coluna zero como prioridade.
+                                                     //poderia ser gerneralizado
     }
 }
 
@@ -176,18 +177,18 @@ void qsParticiona(cardapioM *mat, int esq, int dir, int *i, int *j) {
     *i = esq;
     *j = dir;
 
-    pivo = mat->prioridade[(esq + dir) / 2]; // Usa o valor de prioridade como pivô
+    pivo = mat->prioridade[(esq + dir) / 2]; // valor central
 
     do {
         while (mat->prioridade[*i] < pivo) (*i)++;
         while (mat->prioridade[*j] > pivo) (*j)--;
         if (*i <= *j) {
-            // Troca as prioridades
+            
             auxPrioridade = mat->prioridade[*i];
             mat->prioridade[*i] = mat->prioridade[*j];
             mat->prioridade[*j] = auxPrioridade;
 
-            // Troca as linhas da matriz
+           
             auxLinha = mat->mat[*i];
             mat->mat[*i] = mat->mat[*j];
             mat->mat[*j] = auxLinha;
@@ -197,4 +198,23 @@ void qsParticiona(cardapioM *mat, int esq, int dir, int *i, int *j) {
         }
     } while (*i <= *j);
 
+}
+
+
+
+void desalocarMatriz(cardapioM *cardamioM) {
+    if (cardamioM->mat) {
+        for (int i = 0; i < *(cardamioM->linhas); i++) {
+            if (cardamioM->mat[i]) {
+                for (int j = 0; j < MAX_COLUNAS; j++) {
+                    free(cardamioM->mat[i][j]); 
+                }
+                free(cardamioM->mat[i]); 
+            }
+        }
+        free(cardamioM->mat); 
+    }
+
+    free(cardamioM->prioridade); 
+    free(cardamioM->linhas); 
 }

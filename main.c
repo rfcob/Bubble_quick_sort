@@ -11,8 +11,8 @@
       cardapioM meuCardapio_2;
 
       // Abrir o arquivo e contar o numero de linhas
-      openCSV("data/restaurante_pratos copy.csv", ',', &meuCardapio);
-      openCSV("data/restaurante_pratos copy.csv", ',', &meuCardapio_2);
+      openCSV("data/restaurante_pratos_red_2.csv", ',', &meuCardapio);
+      openCSV("data/restaurante_pratos_red_2.csv", ',', &meuCardapio_2);
 
       // Chamar a função numero_linhas para obter o número de linhas
       printf("Número de linhas lidas: %d\n", numero_linhas(&meuCardapio));
@@ -52,6 +52,12 @@
       double tempo2 = ((double)t2) / CLOCKS_PER_SEC;
       
       printf("o tempo de excecução do quick sort foi em segundos: %.8f\n", tempo2);
+
+
+   //___________________________________
+
+      desalocarMatriz(&meuCardapio_2);
+      desalocarMatriz(&meuCardapio);
 
       return 0;
 
